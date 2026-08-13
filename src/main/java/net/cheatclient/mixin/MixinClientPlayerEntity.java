@@ -1,9 +1,12 @@
 package net.cheatclient.mixin;
 
 import net.cheatclient.CheatClientMod;
+import net.cheatclient.feature.FastPlaceFeature;
 import net.cheatclient.feature.FeatureManager;
 import net.cheatclient.feature.FlyFeature;
+import net.cheatclient.feature.NoFallFeature;
 import net.cheatclient.feature.SpeedFeature;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -29,6 +32,8 @@ public abstract class MixinClientPlayerEntity extends LivingEntity {
         ClientPlayerEntity self = (ClientPlayerEntity) (Object) this;
         FlyFeature fly = fm.get(FlyFeature.class);
         SpeedFeature speed = fm.get(SpeedFeature.class);
+        NoFallFeature noFall = fm.get(NoFallFeature.class);
+        FastPlaceFeature fastPlace = fm.get(FastPlaceFeature.class);
 
         boolean moving = self.input.movementForward != 0 || self.input.movementSideways != 0;
 
@@ -54,7 +59,16 @@ public abstract class MixinClientPlayerEntity extends LivingEntity {
         if (speed != null && speed.isEnabled() && moving) {
             double boost = 1.25D;
             setVelocity(getVelocity().x * boost, getVelocity().y, getVelocity().z * boost);
-            self.setSprinting(true);
+        }
+
+        // NoFall: reset fall distance to avoid fall damage.
+        if (noFall != null && noFall.isEnabled() && self.fallDistance > 2.5F) {
+            self.fallDistance = 0.0F;
+        }
+
+        // FastPlace: clear the item-use cooldown every tick.
+        if (fastPlace != null && fastPlace.isEnabled()) {
+            ((MinecraftClientAccessor) MinecraftClient.getInstance()).cheatclient$setItemUseCooldown(0);
         }
     }
 }

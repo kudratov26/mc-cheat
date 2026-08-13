@@ -1,15 +1,13 @@
 package net.cheatclient.feature;
 
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.network.ClientPlayerEntity;
 import org.lwjgl.glfw.GLFW;
 
-public class SpeedFeature implements EnableableFeature {
+public class NoFallFeature implements EnableableFeature {
     private boolean enabled;
 
     @Override
     public String getName() {
-        return "Speed";
+        return "NoFall";
     }
 
     @Override
@@ -19,7 +17,7 @@ public class SpeedFeature implements EnableableFeature {
 
     @Override
     public String getDescription() {
-        return "Increases horizontal movement speed.";
+        return "Prevents fall damage.";
     }
 
     @Override
@@ -35,6 +33,6 @@ public class SpeedFeature implements EnableableFeature {
 
     @Override
     public int getDefaultKey() {
-        return GLFW.GLFW_KEY_H;
+        return GLFW.GLFW_KEY_F;
     }
 }

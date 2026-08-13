@@ -4,12 +4,12 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import org.lwjgl.glfw.GLFW;
 
-public class SpeedFeature implements EnableableFeature {
+public class SprintFeature implements EnableableFeature {
     private boolean enabled;
 
     @Override
     public String getName() {
-        return "Speed";
+        return "Sprint";
     }
 
     @Override
@@ -19,7 +19,7 @@ public class SpeedFeature implements EnableableFeature {
 
     @Override
     public String getDescription() {
-        return "Increases horizontal movement speed.";
+        return "Always sprint when moving forward.";
     }
 
     @Override
@@ -35,6 +35,14 @@ public class SpeedFeature implements EnableableFeature {
 
     @Override
     public int getDefaultKey() {
-        return GLFW.GLFW_KEY_H;
+        return GLFW.GLFW_KEY_V;
+    }
+
+    @Override
+    public void onTick() {
+        ClientPlayerEntity player = MinecraftClient.getInstance().player;
+        if (player != null) {
+            player.setSprinting(player.input.movementForward > 0);
+        }
     }
 }
