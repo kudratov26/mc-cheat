@@ -53,6 +53,12 @@ public class FeatureManager {
         register(new SprintFeature());
         register(new NoFallFeature());
 
+        register(new KillAuraFeature());
+        register(new TriggerBotFeature());
+        register(new AutoClickerFeature());
+        register(new AutoSoupFeature());
+        register(new FastPlaceFeature());
+
         ClientTickEvents.END_CLIENT_TICK.register(this::onTick);
 
         CheatClientMod.LOGGER.info("Registered {} features", features.size());
