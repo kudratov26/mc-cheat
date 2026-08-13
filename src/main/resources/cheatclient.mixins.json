@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "net.cheatclient.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "MixinClientPlayerEntity",
+    "MixinInGameHud"
+  ],
+  "client": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

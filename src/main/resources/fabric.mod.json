@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "cheatclient",
+  "version": "${version}",
+  "name": "Cheat Client",
+  "description": "A Fabric cheat client with Fly, Speed, and an in-game HUD.",
+  "authors": [
+    "culpe"
+  ],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/cheatclient/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "main": [
+      "net.cheatclient.CheatClientMod"
+    ]
+  },
+  "mixins": [
+    "cheatclient.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.15.0",
+    "minecraft": "~1.20.4",
+    "java": ">=17",
+    "fabric-key-binding-api-v1": "*"
+  }
+}
