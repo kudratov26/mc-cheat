@@ -1,0 +1,24 @@
+{
+  "mappings": {
+    "com/cheatclient/mixin/ClientPlayerEntityMixin": {
+      "damage": "Lnet/minecraft/class_746;method_5643(Lnet/minecraft/class_1282;F)Z",
+      "sendMovementPackets": "Lnet/minecraft/class_746;method_3136()V",
+      "tickMovement": "Lnet/minecraft/class_746;method_6007()V"
+    },
+    "com/cheatclient/mixin/PlayerTickMixin": {
+      "tick": "Lnet/minecraft/class_746;method_5773()V"
+    }
+  },
+  "data": {
+    "named:intermediary": {
+      "com/cheatclient/mixin/ClientPlayerEntityMixin": {
+        "damage": "Lnet/minecraft/class_746;method_5643(Lnet/minecraft/class_1282;F)Z",
+        "sendMovementPackets": "Lnet/minecraft/class_746;method_3136()V",
+        "tickMovement": "Lnet/minecraft/class_746;method_6007()V"
+      },
+      "com/cheatclient/mixin/PlayerTickMixin": {
+        "tick": "Lnet/minecraft/class_746;method_5773()V"
+      }
+    }
+  }
+}
