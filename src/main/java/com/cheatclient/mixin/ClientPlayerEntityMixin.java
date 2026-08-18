@@ -63,13 +63,13 @@ public class ClientPlayerEntityMixin {
     }
     
     @Inject(method = "damage", at = @At("HEAD"), cancellable = true)
-    private void onDamage(net.minecraft.entity.damage.DamageSource source, float amount, CallbackInfo ci) {
+    private void onDamage(net.minecraft.entity.damage.DamageSource source, float amount, org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable<Boolean> cir) {
         ClientPlayerEntity player = (ClientPlayerEntity) (Object) this;
         
         if (CheatClientMod.getInstance().isFeatureActive(CheatClientMod.FEATURE_NO_FALL)) {
             // Check if damage is from falling by checking the damage source name
             if (source.getName().equals("fall") || source.getName().equals("fall_damage")) {
-                ci.cancel(); // Cancel fall damage
+                cir.setReturnValue(false); // Cancel fall damage
             }
         }
     }
